@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>숫자 맞추기</title>
+    </head>
+    <body>
+        <h1>guess a number (1~10)</h1>
+        <input type="number" id="inputNumber" placeholder="숫자를 입력하세요." />
+        <button type="button" id="checkButton">확인</button>
+        <p id="result"></p>
+
+        <script>
+            const input = document.getElementById("inputNumber");
+            const result = document.getElementById("result");
+            const button = document.getElementById("checkButton");
+            // 숫자 랜덤 지정(1-10)
+            // floor로 사용할 때 10 + 1을 넣어야 1-10까지 나오는데, 10까지로 넣어서 오류가 있었습니다.
+            // 이 선언을 function 안에다 넣으니 버튼을 누를때마다 숫자가 계속 바뀌어서 function 밖에다 뺐습니다.
+            let randomNumber = Math.floor(Math.random() * 10 + 1);
+
+            button.addEventListener("click", function (e) {
+                // 사용자가 넣은 값을 변수에 저장
+                // input의 값을 Number형으로 변환하지 않아 오류가 있었습니다.
+                const userInput = Number(input.value);
+
+                let message = "";
+
+                if (userInput === randomNumber) {
+                    message = "일치합니다.";
+                } else if (userInput > randomNumber) {
+                    message = "어, 커요!";
+                } else {
+                    message = "어, 작아요!";
+                }
+
+                result.textContent = `입력하신 값 : ${userInput}, 결과는? ${message}`;
+            });
+        </script>
+    </body>
+</html>
