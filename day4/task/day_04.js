@@ -68,15 +68,20 @@ animals.splice(1, 0, "parret", "rabbit");
 
 // Quiz 9. animals 변수의 값을 거꾸로 출력하세요 ['fox','cat','rabbit','parret','puppy']
 
-animals.reverse;
+animals.reverse();
 
 //----------------------------------------------------------------------------------
 
 const str = "Hello";
 // Quiz 10. str문자를 배열로 반환하시오 -> ['H','e','l','l','o]
 
-console.log(str.split(""));
-console.log(...str);
+//console.log(str.split(""));
+
+let result = str.split("");
+let result2 = [...str];
+
+// str을 전개하여 콘솔에만 뿌리는 것(배열로 반환 X)
+//console.log(...str);
 
 const arr = ["Today", "is", "Monday", "!"];
 
