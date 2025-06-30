@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li>Html</li>
+        <li>CSS</li>
+        <li>javaScript</li>
+        <li>Scss</li>
+        <li>jQuery</li>
+    </ul>
+    <script>
+        // querySelector,querySelectorAll
+        const lis = document.querySelectorAll('li')
+        // lis -> NodeList 로 들어와있다(배열이 아님)
+        console.log(lis, lis.textContent);
+
+        // for문으로 li의 컨텐츠 콘솔에 찍기
+        for (let i = 0; i <= lis.length; i++) {
+            console.log(lis[i].textContent);
+        }
+
+        //forEach문으로 li 컨텐츠 콘솔에 찍기(나중에 해볼것)
+
+
+    </script>
+</body>
+
+</html>

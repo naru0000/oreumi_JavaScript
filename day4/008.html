@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+</head>
+
+<body>
+    <ul id="ul">
+        <li>Html</li>
+        <li>CSS</li>
+        <li>javaScript</li>
+        <li>Scss</li>
+        <li>jQuery</li>
+    </ul>
+
+    <script>
+        const users = ["Daniel", "Don", "donald", "Micheal"];
+        const ul = document.getElementById('ul');
+
+        users.forEach((user => {
+            const li = document.createElement('li');
+            li.textContent = user;
+
+            const btn = document.createElement('button');
+            btn.textContent = 'delete';
+
+            // 추가된 요소가 있을 위치 설정
+            ul.appendChild(li);
+            li.appendChild(btn);
+        }))
+
+
+    </script>
+</body>
+
+</html>
