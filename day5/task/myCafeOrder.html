@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 음료 계산기</title>
+</head>
+
+
+
+<body>
+
+    <h1>My Cafe 주문 계산기</h1>
+    <form>
+        <label for="drinkSelect">음료 선택</label>
+        <select name="drinkSelect" id="drinkSelect">
+            <option value="latte">카페라떼(3,000원)</option>
+            <option value="americano">아메리카노(2,500원)</option>
+        </select>
+        <label for="sizeSelect">사이즈 선택</label>
+        <select name="sizeSelect" id="sizeSelect">
+            <option value="large">large(2,000원 추가)</option>
+            <option value="small">small(1,000원 추가)</option>
+        </select>
+        <label for="countInput">수량</label>
+        <input type="number" id="countInput">
+        <button type="button" id="calculateBtn">계산하기</button>
+
+        <p id="result"></p>
+    </form>
+
+
+
+    <script>
+
+        // 객체 설정
+        const drinkMenu = {
+            americano: 2500,
+            latte: 3000,
+        };
+
+        const cupSize = {
+            small: 1000,
+            large: 2000,
+        };
+
+        // id값 가져오기
+        const drinkSelect = document.getElementById('drinkSelect');
+        const sizeSelect = document.getElementById('sizeSelect');
+        const countInput = document.getElementById('countInput');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const result = document.getElementById('result');
+
+
+        calculateBtn.addEventListener('click', () => {
+            // 1. 선택한 셀렉트의 값을 변수에 넣음
+            const selectCoffee = drinkSelect.value;
+            const selectSize = sizeSelect.value;
+            const count = Number(countInput.value);
+
+
+            // 2. 객체에서 값을 가져옴
+            const drinkPrice = drinkMenu[selectCoffee];
+            const drinkSize = cupSize[selectSize];
+
+            const total = (drinkPrice + drinkSize) * count
+
+            result.textContent = `총 금액 : ₩${total}(${count}잔,${selectSize})`;
+        });
+
+
+    </script>
+</body>
+
+</html>

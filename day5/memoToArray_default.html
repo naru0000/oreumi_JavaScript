@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>메모를 배열에 저장하기 예제</title>
+    <link rel="stylesheet" href="css/total.css">
+</head>
+
+<body>
+    <div class="memo-container">
+        <h1>메모를 배열에 저장하기</h1>
+        <form id="memoForm">
+            <input type="text" id="memoInput" placeholder="메모를 입력하세요" required>
+            <button type="submit">추가</button>
+        </form>
+        <ul id="memoList"></ul>
+    </div>
+    <script>
+        let memoList = [];
+        const fm = document.getElementById("memoForm");
+        const input = document.getElementById("memoInput");
+        const list = document.getElementById("memoList");
+        console.log(fm);
+
+        fm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 이벤트가 일어날때 태그의 기본 기능을 무효화시킴
+            const value = input.value.trim();
+            if (value) {
+                memoList.push(value);
+                //메모리스트 rendering
+                renderList()
+            }
+            console.log(memoList);
+        })
+
+        function renderList() {
+
+            list.innerHTML = ""; // ul 태그 초기화
+
+            // 개별 li 만들어줌
+            memoList.forEach((memo) => {
+                const li = document.createElement('li');
+                li.textContent = memo;
+                list.appendChild(li);
+            });
+
+            input.value = ''; // input 초기화
+        }
+    </script>
+</body>
+
+</html>
