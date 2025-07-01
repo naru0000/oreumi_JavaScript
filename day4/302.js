@@ -25,5 +25,5 @@ console.clear();
 
 // 배열 순서를 거꾸로 변경한다(원본 배열을 변경)
 const arr = ["apple", "mango", "banana"];
-arr.reverse;
+arr.reverse();
 console.log(arr);
