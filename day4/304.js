@@ -45,7 +45,7 @@ const findNumber = numbers4.some((num) => num > 3);
 
 //3 fruits 변수 안에 있는 값이 모두 문자열인지 확인
 const fruits = ["apple", "mango", "banana"];
-const findString = fruits.every((x) => typeof x === "String");
+const findString = fruits.every((x) => typeof x === "string");
 
 //4 이메일형식이 모두 맞는지 확인
 
