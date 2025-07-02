@@ -230,6 +230,8 @@ const users = [
 
 const userOlder = users.reduce((oldest, current) => {
     return oldest.age >= current.age ? oldest : current;
-});
+}, {});
+
+console.log(userOlder.name);
 
 // 계속 풀수가 없어서 한계가 와서 구글링 하면서 찾았습니다..ㅠㅠ
