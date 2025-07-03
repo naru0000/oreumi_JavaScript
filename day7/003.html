@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키보드 이벤트</title>
+    <link rel="stylesheet" href="./css/dom.css">
+</head>
+
+<body>
+    <main class="keyboard-container">
+        <h1 class="keyboard-title">키보드 이벤트 실습</h1>
+        <section class="keyboard-section">
+            <div class="keyboard-instruction">키보드를 아무거나 눌러보세요!</div>
+            <div class="keyboard-event-info" id="eventInfo">
+                <div>키: <span id="keyName">-</span></div>
+                <div>코드: <span id="keyCode">-</span></div>
+                <div>이벤트 타입: <span id="eventType">-</span></div>
+                <div>Shift: <span id="shiftKey">-</span></div>
+                <div>Ctrl: <span id="ctrlKey">-</span></div>
+                <div>Alt: <span id="altKey">-</span></div>
+                <div>Meta: <span id="metaKey">-</span></div>
+            </div>
+            <div class="keyboard-history-label">최근 입력한 키</div>
+            <div class="keyboard-history" id="keyHistory"></div>
+        </section>
+    </main>
+    <script>
+
+        // 태그 변수에 저장 너무 많으니까 구조분해할당으로
+        function getElements() {
+            const keyName = document.getElementById('keyName');
+            const keyCode = document.getElementById('keyCode');
+            const eventType = document.getElementById('eventType');
+            const shiftKey = document.getElementById('shiftKey');
+            const ctrlKey = document.getElementById('ctrlKey');
+            const altKey = document.getElementById('altKey');
+            const metaKey = document.getElementById('metaKey');
+            const keyHistory = document.getElementById('keyHistory');
+
+            return [keyName, keyCode, eventType, shiftKey, ctrlKey, altKey, metaKey, keyHistory];
+        }
+
+        const [keyName, keyCode, eventType, shiftKey, ctrlKey, altKey, metaKey, keyHistory] = getElements()
+
+        function updateEventInfo(e, type) {
+            keyName.textContent = e.key;
+            keyCode.textContent = e.code;
+            eventType.textContent = type;
+            shiftKey.textContent = e.shiftKey ? '0' : '-';
+            ctrlKey.textContent = e.ctrlKey ? '0' : '-';
+            altKey.textContent = e.altKey ? '0' : '-';
+            metaKey.textContent = e.metaKey ? '0' : '-';
+        }
+
+
+        // 최근 입력한 키 추가
+        // history를 빈 배열에 만들어서 안에다가 넣은다음
+        // 문자열로 빼준다.(쉼표 때문에)
+        // unshift 함수는 배열 시작부분에 하나 이상의 요소를 추가하는 메서드
+
+        let history = [];
+        // 최근 입력한 키 최대갯수(이런건 절대값으로 대문자로 설정)
+        const MAX_HISTORY = 20;
+
+        // history 20개 제한
+
+        function addToHistory(e, type) {
+            const display = `<span class="key-item">${e.key}</span>`
+            history.unshift(display);
+
+            if (history.length > MAX_HISTORY) {
+                history.pop();
+            }
+
+            console.log(history);
+            keyHistory.innerHTML = history.join('');
+        }
+
+
+        // 키를 누를때 이벤트 실행 
+        // updateEventInfo 쪽 keydown은 type임. 매개변수 
+        /*         window.addEventListener('keydown', (e) => {
+                    updateEventInfo(e, 'keydown');
+                }) */
+
+        window.addEventListener('keydown', (e) => {
+            updateEventInfo(e, 'keydown');
+            addToHistory(e, 'keydown');
+
+            if (e.ctrlKey && e.key === 'Enter') {
+                console.log(`Ctrl + Enter키가 눌렸습니다.`);
+            }
+        })
+
+
+        // 키보드나 스크롤 이벤트는 보통 window를 많이 붙임
+        // keydown - 누르는 순간, keyup - 눌렀다 떼는 순간
+        /*         window.addEventListener('keydown', (e) => {
+                    console.log(`${e.code}키를 눌렀습니다`)
+                }) */
+
+        // e.key는 실제 타이핑 되는 key code는 논리적 이름을 출력
+        /*         window.addEventListener('keyup', (e) => {
+                    console.log(`${e.key}키를 떼었습니다`)
+                }) */
+
+    </script>
+</body>
+
+</html>

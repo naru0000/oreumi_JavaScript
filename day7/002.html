@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트,이벤트위임</title>
+    <link rel="stylesheet" href="./css/dom.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DOM 이벤트</h1>
+        <button id="alertBtn">클릭 이벤트 (Alert)</button>
+        <div class="input-group">
+            <label for="inputBox">실시간 입력 이벤트</label>
+            <input type="text" id="inputBox" placeholder="여기에 입력...">
+            <div id="output"></div>
+        </div>
+        <div class="color-box-label">마우스를 올려보세요</div>
+        <div id="colorBox">Hover me!</div>
+    </div>
+    <script>
+        // alertBtn아이디를 가진 버튼 클릭시 alert('버튼이 클릭되었어요') 띄우기
+
+        const btn = document.getElementById("alertBtn");
+        const input = document.getElementById("inputBox");
+        const output = document.getElementById("output");
+        const colorBox = document.querySelector("#colorBox");
+
+        colorBox.addEventListener('mouseenter', overHandler);
+        colorBox.addEventListener('mouseleave', outHandler);
+
+        function overHandler(e) {
+            //active 클래스 추가
+            e.target.classList.add('active')
+            e.target.textContent = '마우스 진입!'
+        }
+
+        function outHandler(e) {
+            // active 클래스 제거
+            e.target.classList.remove('active')
+            e.target.textContent = 'Hover me!'
+        }
+
+
+
+        // inputBox.addEventListener('input', printInput)
+
+        // 입력한 내용을 받아와야해서 e를 넣어야함(이벤트)
+        /*         function printInput(e) {
+                    const inputMsg = e.target.value;
+                    output.textContent = `입력값은 ${inputMsg}야.`;
+                }; */
+
+
+
+        btn.addEventListener('click', btnHandler);
+        function btnHandler() {
+            alert('버튼이 클릭되었어요');
+        }
+
+        /*         btn.addEventListener('click', (e) => {
+                    alert('버튼이 클릭되었어요');
+                }) */
+
+
+
+
+    </script>
+</body>
+
+</html>

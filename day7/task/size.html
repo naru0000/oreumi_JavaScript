@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소의 크기/위치</title>
+    <style>
+        div {
+            width: 400px;
+            height: 200px;
+            padding: 20px;
+            margin: 50px auto;
+            background: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script>
+        // getBoundingClientRect은 요소의 크기와 뷰포트를 기준으로 위치를 반환한다.
+        // 이런 걸 이용해서 인터랙션을 할까요? 어렵네요..ㅠㅋㅋㅋㅋㅋㅋㅋ
+
+        const test = document.getElementById("test");
+
+        console.log('현재 창기준 x좌표:' + test.getBoundingClientRect().x)
+        console.log('현재 창기준 y좌표:' + test.getBoundingClientRect().y)
+        console.log('엘리먼트 가로:' + test.getBoundingClientRect().width)
+        console.log('엘리먼트 세로:' + test.getBoundingClientRect().height)
+        console.log('현재 창기준 세로 시작점 부터 엘리먼트 윗변 까지의 거리:' + test.getBoundingClientRect().top)
+        console.log('현재 창기준 가로 시작점 부터 엘리먼트 왼쪽변 까지의 거리:' + test.getBoundingClientRect().left)
+        console.log('현재 창기준 가로 시작점 부터 엘리먼트 오른쪽변 까지의 거리:' + test.getBoundingClientRect().right)
+        console.log('현재 창기준 세로 시작점 부터 엘리먼트 아래변 까지의 거리:' + test.getBoundingClientRect().bottom)
+
+        // offsetLeft,offsetTop
+        // 요소 좌측 상단 모서리를 기준으로 left,와 top의 픽셀 값이다.
+        // 요소의 margin 값까지 포함한 크기를 기준으로 한다.
+
+        console.log(`요소의 x축 값은 ` + test.offsetLeft);
+        console.log(`요소의 y축 값은 ` + test.offsetTop);
+
+
+    </script>
+</body>
+
+</html>

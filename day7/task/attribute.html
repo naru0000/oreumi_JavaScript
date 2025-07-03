@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 제어</title>
+</head>
+
+<body>
+    <a href="#" id="link"></a>
+
+
+    <button id="button" type="button">Add</button>
+
+    <script>
+
+        // getAttribute HTML 속성에 접근한다
+        const link = document.getElementById("link")
+        console.log(link.getAttribute('href')); // href의 #을 가져옴
+
+        // setAttribute 는 지정된 요소의 속성값을 설정한다. 이미 속성값을 가지고 있었다면 그 값을 지우고 새로운 값을 적용한다.
+        const btn = document.getElementById("button");
+        btn.setAttribute("id", "btn"); // id를 btn으로 변경
+    </script>
+</body>
+
+</html>

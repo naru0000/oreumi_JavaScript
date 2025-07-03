@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트,이벤트위임</title>
+    <link rel="stylesheet" href="./css/dom.css">
+    <style>
+        .btn {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all-container">
+        <div class="menu-container">
+            <button class="btn">
+                <img src="./images/irangi_01.png" alt="irangi">
+            </button>
+            <button class="btn">
+                <img src="./images/irangi_02.png" alt="irangi">
+            </button>
+            <button class="btn">
+                <img src="./images/irangi_03.png" alt="irangi">
+            </button>
+        </div>
+        <ul id="list">
+            <li>Apple</li>
+            <li>Mango</li>
+            <li>Banana</li>
+        </ul>
+        <p id="p">
+            Hello World
+            <span>SPAN</span>
+            <strong>STRONG</strong>
+        </p>
+        <div id="testBox">
+            <strong>Strong</strong>
+            <em>em</em>
+            <p>Paragraph</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        //testBox에 클릭이벤트가 발생하면 그 타겟이 EM일때만 콘솔에 '클릭'을 출력
+
+        const emClick = document.querySelector('#testBox');
+
+        emClick.addEventListener('click', clickEm);
+
+        function clickEm(e) {
+            const isTarget = e.target.nodeName === 'EM';
+            if (isTarget) {
+                console.log('클릭');
+            }
+        }
+
+        // emClick이라는 변수로 설정해서 ..
+        // addEventListener에 화살표 함수로 걸어줘도 됨.
+
+
+        const menu = document.querySelector('.menu-container');
+
+        const p = document.getElementById("p")
+        // const p = document.querySelector('#p')
+
+        p.addEventListener('click', test)
+
+        function test(e) {
+            const isTarget = e.target.nodeName === 'STRONG';
+            if (isTarget) {
+                console.log('That\s Strong');
+            }
+        }
+
+
+        function menuHandler(e) {
+            if (e.target.nodeName === "BUTTON") {
+                const contents = e.target.innerHTML;
+                alert(contents)
+            }
+        }
+
+        menu.addEventListener('click', menuHandler);
+
+
+        // ul에 클릭이벤트 추가, 현재 클릭된 요소의 컨텐츠가 콘솔에 찍히게
+
+        const list = document.querySelector('#list'); //list로 입력해도 되고 #입력해도 되고..
+
+        // nodename은 무조건 대문자로 입력
+        list.addEventListener('click', (e) => {
+            if (e.target.nodeName === 'LI') {
+                const contents = e.target.textContent;
+                alert(contents)
+            }
+        })
+
+
+        /*         menu.addEventListener('click', (e) => {
+                    console.log(e.target.nodeName);
+                    if (e.target.nodeName === 'BUTTON') {
+                        const contents = e.target.innerHTML
+                        alert(contents)
+                    }
+                }) */
+
+
+        // 화살표 함수 쓰고 this를 쓰게 되면 전역변수로 인식
+
+        /*         btns[0].addEventListener('click', function (event) {
+                    console.log('eventtarget:, ', event.target);
+                    console.log('currenttarget: ,', event.currentTarget);
+                    console.log('this :', this);
+                }) */
+
+        // tagename과 nodename의 차이?
+
+    </script>
+</body>
+
+</html>
