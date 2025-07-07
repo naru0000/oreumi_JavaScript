@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            height: 500px;
+            position: relative;
+        }
+
+        img {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            left: 30px;
+            bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="./images/irangi_01.png" alt="Is it hard?">
+    </div>
+
+    <script>
+
+        const distance = 10;
+        const img = document.querySelector('.container img');  // ← 맨 위로 올려
+        let url = '';
+        const imgBox = img.getBoundingClientRect();
+        console.log(imgBox);
+        console.log(`img WIDTH : ${imgBox.width}px`);
+
+        window.addEventListener('keydown', (e) => {
+            console.log(e.key);
+            if (e.key === 'ArrowRight') {
+                url = `ArrosRight`;
+                img.style.left = `${img.offsetLeft + distance}px`;
+            } else if (e.key === 'ArrowLeft') {
+                url = `ArrosLeft`;
+                img.style.left = `${img.offsetLeft - distance}px`;
+            }
+            img.setAttribute('src', `./images/irangi_${url}.png`)
+        });
+
+    </script>
+</body>
+
+</html>

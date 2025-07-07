@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="img1" src="./images/irangi_01.png" alt="어려워요?">
+
+    <div class="btn-container">
+        <button type="button" id="btn1" data-alt="Is it Difficult?">01</button>
+        <button type="button" id="btn2" data-alt="Dont give up">02</button>
+        <button type="button" id="btn3" data-alt="Coffee">03</button>
+    </div>
+
+
+    <script>
+        // attribute 제어
+        // 이미지에 마우스를 올리면 irangi_02.png / alt = 'Dont give up'
+
+        // const btn1 = document.getElementById("btn1");
+        // const btn2 = document.getElementById("btn2");
+        // const btn3 = document.getElementById("btn3");
+
+        // btn1.addEventListener('click', () => {
+        //     img1.setAttribute("src", "./images/irangi_01.png")
+        // });
+
+        // btn2.addEventListener('click', () => {
+        //     img1.setAttribute("src", "./images/irangi_02.png")
+        // });
+        // btn3.addEventListener('click', () => {
+        //     img1.setAttribute("src", "./images/irangi_03.png")
+        // });
+
+        const img1 = document.querySelector('.img1');
+        const btns = document.querySelectorAll('.btn-container button')
+
+        // 한번에 하는 방법이 있음(dataset 이용)
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = `./images/irangi_${btn.textContent}.png`;
+                const alt = btn.dataset.alt;
+                img1.setAttribute('src', url)
+                img1.setAttribute('alt', alt)
+            })
+        })
+
+
+
+        console.log(img1.getAttribute('src'))
+        console.log(img1.getAttribute('alt'))
+
+
+
+    </script>
+</body>
+
+</html>
