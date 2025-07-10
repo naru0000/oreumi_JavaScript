@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>디바운스 & 클로저 실습</title>
+</head>
+
+<body>
+    <h1>디바운싱과 클로저</h1>
+    <p>버튼을 빠르게 여러 번 누른 후, 1초 동안 기다려보세요.</p>
+    <button id="debounceBtn">클릭!</button>
+    <p>클릭 로그: <span id="log">아직 클릭 안 함</span></p>
+
+    <script>
+        // 1. 디바운스 함수 만들기
+        const debounce = (func, delay) => {
+            let timerId; // ✨ 클로저가 기억할 변수! 이 공간이 바로 '기억 공간'입니다.
+
+            // 클로저가 적용된 새로운 함수를 반환
+            return (...args) => {
+                // 이전에 설정된 타이머가 있다면 취소 (포스트잇 찢기)
+                clearTimeout(timerId);
+                console.log(`이전 타이머(${timerId}) 취소!`);
+
+                // 새로운 타이머 설정 (새 포스트잇 붙이기)
+                timerId = setTimeout(() => {
+                    func(...args);
+                }, delay);
+                console.log(`새로운 타이머(${timerId}) 설정!`);
+            };
+        };
+
+        // 2. DOM 요소 가져오기
+        const btn = document.getElementById('debounceBtn');
+        const logSpan = document.getElementById('log');
+
+        let clickCount = 0;
+        const logClick = () => {
+            clickCount++;
+            logSpan.textContent = `${clickCount}번 실행됨!`;
+        };
+
+        // 3. 디바운스가 적용된 함수 생성
+        // 이제 debouncedLogClick 함수는 timerId를 기억하는 자신만의 '기억 공간'을 가집니다.
+        const debouncedLogClick = debounce(logClick, 1000); // 1초(1000ms) 지연
+
+        // 4. 버튼에 이벤트 리스너 추가
+        btn.addEventListener('click', debouncedLogClick);
+    </script>
+</body>
+
+</html>
