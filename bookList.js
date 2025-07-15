@@ -12,3 +12,28 @@
 
 const bookList =
     '[{"id":1,"title":"The Great Gatsby","author":"F. Scott Fitzgerald","year":1925,"genre":"Novel","available":true},{"id":2,"title":"To Kill a Mockingbird","author":"Harper Lee","year":1960,"genre":"Novel","available":false},{"id":3,"title":"1984","author":"George Orwell","year":1949,"genre":"Dystopian","available":true},{"id":4,"title":"Pride and Prejudice","author":"Jane Austen","year":1813,"genre":"Romance","available":true},{"id":5,"title":"The Catcher in the Rye","author":"J.D. Salinger","year":1951,"genre":"Novel","available":false}]';
+
+// 1. 배열로 변환하기 json 문자열 -> 배열로
+
+const parsedBooklist = JSON.parse(bookList);
+
+console.log(parsedBooklist);
+
+// 2. 빈 객체 준비
+const groupBooks = {};
+
+// 3. 배열 순회
+parsedBooklist.forEach((book) => {
+    const genre = book.genre;
+    const title = book.title;
+
+    // 객체에 이 장르가 없다면
+    if (!groupBooks[genre]) {
+        groupBooks[genre] = [];
+    }
+
+    // 객체에 이 장르가 있다면?
+    groupBooks[genre].push(title);
+});
+
+console.log(groupBooks);
